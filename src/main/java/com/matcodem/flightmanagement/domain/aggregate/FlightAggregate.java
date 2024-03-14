@@ -1,6 +1,7 @@
 package com.matcodem.flightmanagement.domain.aggregate;
 
 import com.matcodem.flightmanagement.application.commands.CreateFlightCommand;
+import com.matcodem.flightmanagement.application.events.FlightCanceledEvent;
 import com.matcodem.flightmanagement.application.events.FlightCreatedEvent;
 import lombok.NoArgsConstructor;
 
@@ -21,5 +22,11 @@ public class FlightAggregate extends AggregateRoot {
 
     public void apply(FlightCreatedEvent event) {
         this.id = event.getId();
+    }
+
+    public void cancelFlight() {
+        raiseEvent(FlightCanceledEvent.builder()
+                .id(this.getId())
+                .build());
     }
 }

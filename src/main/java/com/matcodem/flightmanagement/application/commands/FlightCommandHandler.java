@@ -15,4 +15,11 @@ public class FlightCommandHandler implements CommandHandler {
         FlightAggregate flightAggregate = new FlightAggregate(command);
         eventSourcingHandler.save(flightAggregate);
     }
+
+    @Override
+    public void handle(CancelFlightCommand command) {
+        FlightAggregate aggregate = eventSourcingHandler.getById(command.getId());
+        aggregate.cancelFlight();
+        eventSourcingHandler.save(aggregate);
+    }
 }

@@ -1,5 +1,6 @@
 package com.matcodem.flightmanagement.infrastructure.handlers;
 
+import com.matcodem.flightmanagement.application.events.FlightCanceledEvent;
 import com.matcodem.flightmanagement.application.events.FlightCreatedEvent;
 import com.matcodem.flightmanagement.domain.entity.FlightEntity;
 import com.matcodem.flightmanagement.domain.repository.FlightRepository;
@@ -24,5 +25,10 @@ public class FlightEventHandler implements EventHandler {
                 .durationMinutes(event.getDurationMinutes())
                 .build();
         flightRepository.save(flight);
+    }
+
+    @Override
+    public void on(FlightCanceledEvent event) {
+        flightRepository.deleteById(event.getId());
     }
 }
