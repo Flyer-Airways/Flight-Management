@@ -2,7 +2,7 @@ package com.matcodem.flightmanagement.infrastructure;
 
 import com.matcodem.flightmanagement.application.queries.BaseQuery;
 import com.matcodem.flightmanagement.application.queries.QueryHandlerMethod;
-import com.matcodem.flightmanagement.domain.BaseEntity;
+import com.matcodem.flightmanagement.domain.entity.BaseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

@@ -1,6 +1,8 @@
 package com.matcodem.flightmanagement;
 
 import com.matcodem.flightmanagement.application.commands.CommandHandler;
+import com.matcodem.flightmanagement.application.commands.CreateFlightCommand;
+import com.matcodem.flightmanagement.application.queries.FindAllFlightsQuery;
 import com.matcodem.flightmanagement.application.queries.QueryHandler;
 import com.matcodem.flightmanagement.infrastructure.CommandDispatcher;
 import com.matcodem.flightmanagement.infrastructure.QueryDispatcher;
@@ -8,7 +10,9 @@ import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.kafka.annotation.EnableKafka;
 
+@EnableKafka
 @SpringBootApplication
 @RequiredArgsConstructor
 public class FlightManagementApplication {
@@ -24,7 +28,7 @@ public class FlightManagementApplication {
 
     @PostConstruct
     public void registerHandlers() {
-
+        commandDispatcher.registerHandler(CreateFlightCommand.class, commandHandler::handle);
+        queryDispatcher.registerHandler(FindAllFlightsQuery.class, queryHandler::handle);
     }
-
 }

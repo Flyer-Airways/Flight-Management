@@ -2,8 +2,8 @@ package com.matcodem.flightmanagement.infrastructure;
 
 import com.matcodem.flightmanagement.application.events.BaseEvent;
 import com.matcodem.flightmanagement.application.events.EventModel;
-import com.matcodem.flightmanagement.domain.EventStoreRepository;
-import com.matcodem.flightmanagement.domain.FlightAggregate;
+import com.matcodem.flightmanagement.domain.repository.EventStoreRepository;
+import com.matcodem.flightmanagement.domain.aggregate.FlightAggregate;
 import com.matcodem.flightmanagement.infrastructure.exceptions.AggregateNotFoundException;
 import com.matcodem.flightmanagement.infrastructure.exceptions.ConcurrencyException;
 import com.matcodem.flightmanagement.infrastructure.producers.EventProducer;
@@ -31,7 +31,7 @@ public class FlightEventStore implements EventStore {
         for (BaseEvent event : events) {
             version++;
             event.setVersion(version);
-            var eventModel = EventModel.builder()
+            EventModel eventModel = EventModel.builder()
                     .timeStamp(now())
                     .aggregateIdentifier(aggregateId)
                     .aggregateType(FlightAggregate.class.getTypeName())
@@ -39,7 +39,7 @@ public class FlightEventStore implements EventStore {
                     .eventType(event.getClass().getTypeName())
                     .eventData(event)
                     .build();
-            var persistedEvent = eventStoreRepository.save(eventModel);
+            EventModel persistedEvent = eventStoreRepository.save(eventModel);
             if (!persistedEvent.getId().isEmpty()) {
                 eventProducer.produce(event.getClass().getSimpleName(), event);
             }
