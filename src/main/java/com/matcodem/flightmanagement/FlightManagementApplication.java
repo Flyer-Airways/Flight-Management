@@ -1,5 +1,6 @@
 package com.matcodem.flightmanagement;
 
+import com.matcodem.flightmanagement.application.commands.CancelFlightCommand;
 import com.matcodem.flightmanagement.application.commands.CommandHandler;
 import com.matcodem.flightmanagement.application.commands.CreateFlightCommand;
 import com.matcodem.flightmanagement.application.queries.FindAllFlightsQuery;
@@ -29,6 +30,7 @@ public class FlightManagementApplication {
     @PostConstruct
     public void registerHandlers() {
         commandDispatcher.registerHandler(CreateFlightCommand.class, commandHandler::handle);
+        commandDispatcher.registerHandler(CancelFlightCommand.class, commandHandler::handle);
         queryDispatcher.registerHandler(FindAllFlightsQuery.class, queryHandler::handle);
     }
 }

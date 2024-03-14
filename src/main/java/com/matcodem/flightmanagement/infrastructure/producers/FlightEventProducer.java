@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class FlightEventProducer implements EventProducer {
 
-    private final KafkaTemplate<String, Object> kafkaTemplate;
+    private final KafkaTemplate<String, BaseEvent> kafkaTemplate;
 
     @Override
     public void produce(String topicName, BaseEvent event) {
-        kafkaTemplate.send(topicName, event);
-        log.info("Sending {} event to the {}", event, topicName);
+        log.info("Sending {} event with the {} key to the {} topic", event, event.getId(), topicName);
+        kafkaTemplate.send(topicName, event.getId(), event);
     }
 }

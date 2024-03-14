@@ -1,5 +1,6 @@
 package com.matcodem.flightmanagement.infrastructure.consumers;
 
+import com.matcodem.flightmanagement.application.events.FlightCanceledEvent;
 import com.matcodem.flightmanagement.application.events.FlightCreatedEvent;
 import com.matcodem.flightmanagement.infrastructure.handlers.EventHandler;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,13 @@ public class FlightEventConsumer implements EventConsumer {
     @Override
     @KafkaListener(topics = "FlightCreatedEvent", groupId = "${spring.kafka.consumer.group-id}")
     public void consume(FlightCreatedEvent event, Acknowledgment ack) {
+        eventHandler.on(event);
+        ack.acknowledge();
+    }
+
+    @Override
+    @KafkaListener(topics = "FlightCanceledEvent", groupId = "${spring.kafka.consumer.group-id}")
+    public void consume(FlightCanceledEvent event, Acknowledgment ack) {
         eventHandler.on(event);
         ack.acknowledge();
     }
