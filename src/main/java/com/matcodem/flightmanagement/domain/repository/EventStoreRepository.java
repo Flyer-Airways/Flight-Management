@@ -1,4 +1,4 @@
-package com.matcodem.flightmanagement.domain;
+package com.matcodem.flightmanagement.domain.repository;
 
 import com.matcodem.flightmanagement.application.events.EventModel;
 import org.springframework.data.mongodb.repository.MongoRepository;

@@ -1,4 +1,4 @@
-package com.matcodem.flightmanagement.domain;
+package com.matcodem.flightmanagement.domain.aggregate;
 
 import com.matcodem.flightmanagement.application.events.BaseEvent;
 import lombok.extern.slf4j.Slf4j;
