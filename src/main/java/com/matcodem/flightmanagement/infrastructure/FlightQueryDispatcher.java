@@ -1,8 +1,9 @@
 package com.matcodem.flightmanagement.infrastructure;
 
 import com.matcodem.flightmanagement.application.queries.BaseQuery;
-import com.matcodem.flightmanagement.application.queries.QueryHandlerMethod;
+import com.matcodem.flightmanagement.application.queries.handler.QueryHandlerMethod;
 import com.matcodem.flightmanagement.domain.entity.BaseEntity;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -45,7 +46,7 @@ public class FlightQueryDispatcher implements QueryDispatcher {
      * @throws RuntimeException if no handler is registered for the query or if more than one handler is registered.
      */
     @Override
-    public <U extends BaseEntity> List<U> send(BaseQuery query) {
+    public <U extends BaseEntity> Page<U> send(BaseQuery query) {
         var handlers = routes.get(query.getClass());
         if (handlers == null || handlers.isEmpty()) {
             throw new RuntimeException("No query handler was registered!");
