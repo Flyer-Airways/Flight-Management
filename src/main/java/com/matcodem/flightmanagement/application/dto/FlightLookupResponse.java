@@ -5,17 +5,21 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 @SuperBuilder
 @NoArgsConstructor
 public class FlightLookupResponse extends BaseResponse {
-    private List<FlightEntity> flights;
+    private Page<FlightEntity> flights;
 
     public FlightLookupResponse(String message) {
         super(message);
+    }
+
+    public FlightLookupResponse(String message, Page<FlightEntity> flights) {
+        super(message);
+        this.flights = flights;
     }
 }

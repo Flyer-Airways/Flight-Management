@@ -1,10 +1,11 @@
 package com.matcodem.flightmanagement;
 
 import com.matcodem.flightmanagement.application.commands.CancelFlightCommand;
-import com.matcodem.flightmanagement.application.commands.CommandHandler;
 import com.matcodem.flightmanagement.application.commands.CreateFlightCommand;
+import com.matcodem.flightmanagement.application.commands.handler.CommandHandler;
 import com.matcodem.flightmanagement.application.queries.FindAllFlightsQuery;
-import com.matcodem.flightmanagement.application.queries.QueryHandler;
+import com.matcodem.flightmanagement.application.queries.SearchFlightQuery;
+import com.matcodem.flightmanagement.application.queries.handler.QueryHandler;
 import com.matcodem.flightmanagement.infrastructure.CommandDispatcher;
 import com.matcodem.flightmanagement.infrastructure.QueryDispatcher;
 import jakarta.annotation.PostConstruct;
@@ -30,5 +31,6 @@ public class FlightManagementApplication {
         commandDispatcher.registerHandler(CreateFlightCommand.class, commandHandler::handle);
         commandDispatcher.registerHandler(CancelFlightCommand.class, commandHandler::handle);
         queryDispatcher.registerHandler(FindAllFlightsQuery.class, queryHandler::handle);
+        queryDispatcher.registerHandler(SearchFlightQuery.class, queryHandler::handle);
     }
 }

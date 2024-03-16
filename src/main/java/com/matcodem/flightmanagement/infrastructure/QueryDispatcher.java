@@ -1,10 +1,9 @@
 package com.matcodem.flightmanagement.infrastructure;
 
 import com.matcodem.flightmanagement.application.queries.BaseQuery;
-import com.matcodem.flightmanagement.application.queries.QueryHandlerMethod;
+import com.matcodem.flightmanagement.application.queries.handler.QueryHandlerMethod;
 import com.matcodem.flightmanagement.domain.entity.BaseEntity;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 /**
  * Interface representing a query dispatcher responsible for routing queries to their respective handlers.
@@ -29,5 +28,5 @@ public interface QueryDispatcher {
      * @param <U>   The type of the result returned by the handler.
      * @return The result of processing the query.
      */
-    <U extends BaseEntity> List<U> send(BaseQuery query);
+    <U extends BaseEntity> Page<U> send(BaseQuery query);
 }

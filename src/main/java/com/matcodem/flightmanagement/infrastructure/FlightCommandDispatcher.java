@@ -1,7 +1,7 @@
 package com.matcodem.flightmanagement.infrastructure;
 
 import com.matcodem.flightmanagement.application.commands.BaseCommand;
-import com.matcodem.flightmanagement.application.commands.CommandHandlerMethod;
+import com.matcodem.flightmanagement.application.commands.handler.CommandHandlerMethod;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

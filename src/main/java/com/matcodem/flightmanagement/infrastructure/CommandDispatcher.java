@@ -1,7 +1,7 @@
 package com.matcodem.flightmanagement.infrastructure;
 
 import com.matcodem.flightmanagement.application.commands.BaseCommand;
-import com.matcodem.flightmanagement.application.commands.CommandHandlerMethod;
+import com.matcodem.flightmanagement.application.commands.handler.CommandHandlerMethod;
 
 /**
  * Interface representing a command dispatcher responsible for routing commands to their respective handlers.

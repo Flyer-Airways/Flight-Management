@@ -1,5 +1,7 @@
-package com.matcodem.flightmanagement.application.commands;
+package com.matcodem.flightmanagement.application.commands.handler;
 
+import com.matcodem.flightmanagement.application.commands.CancelFlightCommand;
+import com.matcodem.flightmanagement.application.commands.CreateFlightCommand;
 import com.matcodem.flightmanagement.domain.aggregate.FlightAggregate;
 import com.matcodem.flightmanagement.infrastructure.handlers.EventSourcingHandler;
 import lombok.RequiredArgsConstructor;
