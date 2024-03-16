@@ -17,14 +17,14 @@ public class FlightEventConsumer implements EventConsumer {
     private final EventHandler eventHandler;
 
     @Override
-    @KafkaListener(topics = "FlightCreatedEvent", groupId = "${spring.kafka.consumer.group-id}")
+    @KafkaListener(topics = "FlightCreatedEvent", groupId = "${kafka.group-id}", containerFactory = "kafkaListenerContainerFactory")
     public void consume(FlightCreatedEvent event, Acknowledgment ack) {
         eventHandler.on(event);
         ack.acknowledge();
     }
 
     @Override
-    @KafkaListener(topics = "FlightCanceledEvent", groupId = "${spring.kafka.consumer.group-id}")
+    @KafkaListener(topics = "FlightCanceledEvent", groupId = "${kafka.group-id}")
     public void consume(FlightCanceledEvent event, Acknowledgment ack) {
         eventHandler.on(event);
         ack.acknowledge();
